@@ -9,7 +9,7 @@ class App extends Component {
 		return (
 			<Container component="article" maxWidth="sm">
 				<Typography variant="h3" component="h1" align="center">Formulario de Cadastro</Typography>
-				<RegisterForm onSubmit={onSubmitForm}/>
+				<RegisterForm onSubmit={onSubmitForm} documentValidation={documentValidation}/>
 			</Container>
 		);
 	}
@@ -17,6 +17,14 @@ class App extends Component {
 
 function onSubmitForm(args) {
 	console.log(args);
+}
+
+function documentValidation(cpf) {
+	if (cpf.length !== 11) {
+		return { valid: false, msg: "CPF deve ter 11 dígitos" }
+	}
+
+	return { valid: true, msg: "" }
 }
 
 export default App;
